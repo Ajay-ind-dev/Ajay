@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCHEME FINDER</title>
+
+    <style>
+        :root {
+            --primary: #6c63ff;
+            --bg: #0f1225;
+            --card: #ffffff;
+            --text: #222;
+        }
+
+        .dark {
+            --bg: #000;
+            --card: #1a1a1a;
+            --text: #eee;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--bg);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* ---------- WRAPPER ---------- */
+        .wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ---------- NAVBAR FIXED ---------- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(15, 18, 37, 0.95);
+            z-index: 900;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            height: 64px;
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .logo span {
+            background: var(--primary);
+            color: white;
+            padding: 6px 10px;
+            border-radius: 12px;
+        }
+
+        /* ---------- DARK/LIGHT BUTTON FIXED ---------- */
+        #darkBtn {
+            position: fixed;
+            top: 0px;
+            right: 16px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            background: var(--primary);
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ---------- HERO ---------- */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 1.2s ease;
+            padding-top: 80px;
+            /* offset navbar */
+        }
+
+        .hero-inner {
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 46px;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            max-width: 520px;
+            margin: 15px auto;
+            opacity: .9;
+        }
+
+        .hero .cta {
+            margin-top: 30px;
+            padding: 16px 40px;
+            font-size: 18px;
+            border: none;
+            border-radius: 40px;
+            background: var(--primary);
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(108, 99, 255, .5);
+            animation: pulse 2s infinite;
+        }
+
+        /* ---------- CHECK ---------- */
+        .check {
+            display: none;
+            padding: 80px 0;
+        }
+
+        .card {
+            background: var(--card);
+            color: var(--text);
+            max-width: 420px;
+            margin: auto;
+            padding: 28px;
+            border-radius: 22px;
+            animation: slideUp .6s ease;
+        }
+
+        .card h2 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        input,
+        select,
+        button {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 12px;
+            border: 1px solid #ccc;
+        }
+
+        .check-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 12px;
+            padding: 12px;
+            border-left: 5px solid var(--primary);
+            background: #eef;
+            border-radius: 10px;
+        }
+
+        .dark .result {
+            background: #2a2a2a;
+        }
+
+        .back {
+            margin-top: 15px;
+            text-align: center;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        /* ---------- ANIMATIONS ---------- */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(108, 99, 255, .6);
+            }
+
+            70% {
+                box-shadow: 0 0 0 25px rgba(108, 99, 255, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(108, 99, 255, 0);
+            }
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media(max-width:600px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            #darkBtn {
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+                top: 0px;
+                right: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="wrap nav-inner">
+            <div class="logo">
+                <img src="favicon.png" alt="Logo" style="height:40px;">
+
+            </div>
+    </nav>
+
+    <button id="darkBtn" onclick="toggleDark()">🌙</button>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="wrap hero-inner">
+            <h1>Find <span>Government Schemes</span><br>Made For You</h1>
+            <p>No confusion. No agents. Just official schemes you’re eligible for.</p>
+            <button class="cta" onclick="openCheck()">Check Eligibility</button>
+        </div>
+    </section>
+
+    <!-- CHECK -->
+    <section class="check" id="check">
+        <div class="wrap">
+            <div class="card">
+                <h2>Check Eligibility</h2>
+
+                <input type="number" id="age" placeholder="Age">
+
+                <select id="state">
+                    <option value="">State</option>
+                    <option value="Odisha">Odisha</option>
+                    <option value="Bihar">Bihar</option>
+                </select>
+
+                <select id="category">
+                    <option value="">Category</option>
+                    <option value="Labour">Labour</option>
+                    <option value="Student">Student</option>
+                </select>
+
+                <select id="edu">
+                    <option value="">Qualification</option>
+                    <option value="ITI">ITI</option>
+                    <option value="12th">12th</option>
+                </select>
+
+                <button class="check-btn" onclick="checkEligibility()">Check</button>
+                <div id="result"></div>
+
+                <div class="back" onclick="goHome()">← Back</div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        /* ---------- SOUND ---------- */
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        const audioCtx = new AudioCtx();
+
+        function playSound() {
+            if (audioCtx.state === "suspended") {
+                audioCtx.resume();
+            }
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.frequency.value = 520;
+            gain.gain.setValueAtTime(0.25, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.15);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.15);
+        }
+
+        /* ---------- DARK/LIGHT ---------- */
+        const darkBtn = document.getElementById("darkBtn");
+
+        function toggleDark() {
+            document.body.classList.toggle("dark");
+            darkBtn.innerHTML = document.body.classList.contains("dark") ? "☀️" : "🌙";
+            playSound();
+        }
+
+        /* ---------- OPEN/CLOSE ---------- */
+        function openCheck() {
+            playSound();
+            document.getElementById("home").style.display = "none";
+            document.getElementById("check").style.display = "block";
+        }
+
+        function goHome() {
+            playSound();
+            document.getElementById("check").style.display = "none";
+            document.getElementById("home").style.display = "flex";
+        }
+
+        /* ---------- CHECK ELIGIBILITY ---------- */
+        function checkEligibility() {
+            playSound();
+            let age = document.getElementById("age").value;
+            let state = document.getElementById("state").value;
+            let category = document.getElementById("category").value;
+            let edu = document.getElementById("edu").value;
+            let r = document.getElementById("result");
+            r.innerHTML = "";
+
+            if (age >= 18 && category === "Labour" && state === "Odisha") {
+                r.innerHTML += `<div class="result"><b>Odisha Labour Scholarship</b><br>Benefit: ₹20,000<br><a href="https://labour.odisha.gov.in" target="_blank">Official Link</a></div>`;
+            }
+            if (age >= 18 && edu === "ITI") {
+                r.innerHTML += `<div class="result"><b>PM Vishwakarma Yojana</b><br>Toolkit + Training<br><a href="https://pmvishwakarma.gov.in" target="_blank">Official Link</a></div>`;
+            }
+            if (r.innerHTML === "") {
+                r.innerHTML = "❌ No scheme matched";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
